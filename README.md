@@ -23,6 +23,9 @@
     - [Команды супервизора](#команды-супервизора)
     - [Если мы внесли изменения в код:](#если-мы-внесли-изменения-в-код)
 
+> [!NOTE]
+> Настройка актуальна для Django-проектов с внутренней архитектурой как у проекта [Sneaker World](https://github.com/iamwebster/django-ecommerce.git)
+
 ## Первичная настройка linux и обновление пакетов
 
 ```bash
@@ -46,18 +49,21 @@ apt-get install build-essential
 apt-get install build-essential libncursesw5-dev libreadline-gplv2-dev libssl-dev libsqlite3-dev tk-dev libc6-dev libbz2-dev libffi-dev -y 
 ```
 
+Загружаем актуальный файл, распаковываем его в произвольное место:
 ```bash
 wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz
 
 tar xvf Python-3.11.3.tgz
 ```
 
+Перемещаемся в локацию, компилируем и устанавливаем:
 ```bash
 cd Python-3.11.3/
 ./configure --enable-optimizations
 make install
 ```
 
+Удаляем временные файлы:
 ```bash
 cd ..
 rm -rf Python-3.1.*
@@ -118,7 +124,7 @@ touch .env
 
 ### Содержимое .env
 ```conf
-SECRET_KEY="django-insecure-x$gpuegl8xhh1!nv!51#@&)04@_4rux^1h36fty32l221)@^_3"
+SECRET_KEY="SECRET_KEY"
 
 POSTGRES_USER="user"
 POSTGRES_PASSWORD="password"
@@ -183,7 +189,7 @@ sudo service nginx restart
 ## Настройка супервизора
 ```bash
 cd /etc/supervisor/conf.d/
-sudo ln /home/sw_admin/django-ecommerce/config/ecommerce.conf
+sudo ln /home/user/project/config/project.conf
 sudo update-rc.d supervisor enable
 sudo service supervisor start
 ```
